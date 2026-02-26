@@ -1,163 +1,132 @@
-🎭 Unmasking Deepfakes
-Leveraging Deep Learning for Video Authenticity Detection
+# 🎭 Unmasking Deepfakes  
+## Leveraging Deep Learning for Video Authenticity Detection  
 
-🚀 A deep learning–based framework for detecting deepfake videos using MTCNN + EfficientNet architecture.
+🚀 A deep learning–based framework for detecting deepfake videos using **MTCNN + EfficientNet** architecture.
 
-📌 Project Overview
+---
 
-With the rapid growth of AI-generated media, Deepfake technology has become a serious threat to digital authenticity. This project proposes a robust deep learning pipeline that detects whether a video is REAL or FAKE by:
+## 📌 Project Overview
 
-🎥 Converting videos into frames
+With the rapid growth of AI-generated media, **Deepfake technology** has become a serious threat to digital authenticity. This project proposes a robust deep learning pipeline that detects whether a video is **REAL or FAKE** by:
 
-🧑 Detecting and extracting faces using MTCNN
-
-🧠 Classifying faces using EfficientNet
-
-📊 Evaluating performance using Binary Cross-Entropy Loss
+- 🎥 Converting videos into frames  
+- 🧑 Detecting and extracting faces using MTCNN  
+- 🧠 Classifying faces using EfficientNet  
+- 📊 Evaluating performance using Binary Cross-Entropy Loss  
 
 The goal is to build a scalable and efficient detection system capable of identifying subtle manipulations in facial regions.
 
-🏗️ System Architecture
-🔄 Overall Pipeline
-Video Input 
-    ↓
+---
+
+## 🏗️ System Architecture
+
+### 🔄 Overall Pipeline
+Video Input
+↓
 Frame Extraction (OpenCV)
-    ↓
+↓
 Face Detection (MTCNN)
-    ↓
+↓
 Image Preprocessing (Resize + Normalize)
-    ↓
+↓
 EfficientNet Model
-    ↓
+↓
 Binary Classification (REAL / FAKE)
-🧠 Models Used
-1️⃣ MTCNN (Face Detection)
+
+
+---
+
+## 🧠 Models Used
+
+### 1️⃣ MTCNN (Face Detection)
 
 Multi-Task Cascaded Convolutional Network used to:
 
-Detect faces in each frame
+- Detect faces in each frame  
+- Extract bounding boxes  
+- Identify facial landmarks (eyes, nose, mouth)  
 
-Extract bounding boxes
+This ensures the model focuses only on **important facial regions** instead of background noise.
 
-Identify facial landmarks (eyes, nose, mouth)
+---
 
-This ensures the model focuses only on important facial regions instead of background noise.
+### 2️⃣ EfficientNet-B0 (Classification)
 
-2️⃣ EfficientNet-B0 (Classification)
+EfficientNet uses **compound scaling (depth, width, resolution)** to achieve high accuracy with fewer parameters.
 
-EfficientNet uses compound scaling (depth, width, resolution) to achieve high accuracy with fewer parameters.
+- ✔ Computationally efficient  
+- ✔ Strong feature extraction  
+- ✔ Optimized for image classification  
 
-✔ Computationally efficient
-✔ Strong feature extraction
-✔ Optimized for image classification
+---
 
-📂 Dataset
+## 📂 Dataset
 
-📌 Source: Kaggle DeepFake Dataset
+- 📌 **Source:** Kaggle DeepFake Dataset  
+- 📦 **Format:** `.mp4` videos + metadata `.json` files  
+- 🏷 **Labels:** REAL / FAKE  
+- 🎞 15 FPS video frames  
 
-📦 Format: .mp4 videos + metadata .json files
+### Why this dataset?
 
-🏷 Labels: REAL / FAKE
+- Large scale  
+- Multiple deepfake generation techniques  
+- Well documented  
+- Publicly available  
 
-🎞 15 FPS video frames
+---
 
-Why this dataset?
+## ⚙️ Preprocessing Steps
 
-Large scale
+- ✔ Convert video → frames (OpenCV)  
+- ✔ Detect faces (MTCNN)  
+- ✔ Resize images  
+- ✔ Convert to tensors  
+- ✔ Normalize (mean & std scaling)  
+- ✔ Split dataset by **video ID** (not image ID) to prevent data leakage  
 
-Multiple deepfake generation techniques
+---
 
-Well documented
+## 🏋️ Training Configuration
 
-Publicly available
+| Parameter | Value |
+|------------|--------|
+| Optimizer | Adam |
+| Loss Function | Binary Cross-Entropy |
+| Epochs | 15 |
+| Evaluation Metric | Log Loss (BCE) |
 
-⚙️ Preprocessing Steps
+---
 
-✔ Convert video → frames (OpenCV)
-✔ Detect faces (MTCNN)
-✔ Resize images
-✔ Convert to tensors
-✔ Normalize (mean & std scaling)
-✔ Split dataset by video ID (not image ID) to prevent data leakage
+## 📊 Results
 
-🏋️ Training Configuration
-Parameter	Value
-Optimizer	Adam
-Loss Function	Binary Cross-Entropy
-Epochs	15
-Evaluation Metric	Log Loss (BCE)
-📊 Results
+🔹 **Binary Cross-Entropy (BCE): 0.45151**
 
-🔹 Binary Cross-Entropy (BCE): 0.45151
+- ✔ Indicates moderate prediction accuracy  
+- ✔ Model successfully distinguishes real vs fake  
+- ✔ Performance better than random guessing  
+- ✔ Can be further improved via fine-tuning  
 
-✔ Indicates moderate prediction accuracy
-✔ Model successfully distinguishes real vs fake
-✔ Performance better than random guessing
-✔ Can be further improved via fine-tuning
+---
 
-🔬 Key Strengths
+## 🔬 Key Strengths
 
-✅ Efficient preprocessing pipeline
-✅ Face-focused detection
-✅ Reduced background noise impact
-✅ Computationally efficient architecture
-✅ Scalable to larger datasets
+- ✅ Efficient preprocessing pipeline  
+- ✅ Face-focused detection  
+- ✅ Reduced background noise impact  
+- ✅ Computationally efficient architecture  
+- ✅ Scalable to larger datasets  
 
-🚀 Future Improvements
+---
 
-🔮 Integrate Transformer-based models (ViT, Swin)
-🔮 Use temporal features (video-level analysis)
-🔮 Add blink detection & inter-frame inconsistency analysis
-🔮 Test with larger and more diverse datasets
-🔮 Real-time deployment optimization
+## 🚀 Future Improvements
 
-📦 Installation
-git clone https://github.com/yourusername/deepfake-detection.git
-cd deepfake-detection
-pip install -r requirements.txt
-▶️ How to Run
-python train.py
+- 🔮 Integrate Transformer-based models (ViT, Swin)  
+- 🔮 Use temporal features (video-level analysis)  
+- 🔮 Add blink detection & inter-frame inconsistency analysis  
+- 🔮 Test with larger and more diverse datasets  
+- 🔮 Real-time deployment optimization  
 
-For prediction:
+---
 
-python predict.py --video path_to_video.mp4
-📈 Sample Output
-Prediction: FAKE
-Confidence: 87.3%
-🛠 Tech Stack
 
-Python
-
-TensorFlow / Keras
-
-OpenCV
-
-MTCNN
-
-EfficientNet
-
-NumPy
-
-Matplotlib
-
-👩‍💻 Authors
-
-Sadia Ruhama
-
-Sabrina Tajnim Sithi
-
-Oindrila Saha
-
-Chowdhury Mohammad Mutamir Samit
-
-Mahmudul Hasan
-
-📖 Research Contribution
-
-This research contributes to the ongoing battle against misinformation by:
-
-Enhancing automated deepfake detection
-
-Improving computational efficiency
-
-Providing a scalable architecture for future AI security systems
